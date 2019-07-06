@@ -73,24 +73,42 @@ function spreadShuffle(meta) {
 	
 	var rawArray = [];
 	
+	//ABC
 	var keys = Object.keys(newMeta);
+	//012
 	var keyArray = fillRange(0,keys.length-1);
 	
 	//l(keys, keyArray)
 	
 	for (var i=0; i < longest; i++) {
 		//newMeta[keys[0]][i]
+		//012
 		var currentKeyArray = deepClone(keyArray);
 		//l(currentKeyArray, keyArray)
+		
+		//3
+		l(currentKeyArray.length)
 		while (currentKeyArray.length > 0) {
 			//l(currentKeyArray, currentKeyArray[0])
+			
+			//012
 			var randomIndex = Math.floor(Math.random() * currentKeyArray.length);
+			//012
 			var randomKey = currentKeyArray[randomIndex];
 			//newMeta[keys[randomKey]][i]
 			//l(randomKey, randomIndex, currentKeyArray, keys)
-			rawArray.push(newMeta[keys[randomKey]][i]);
-			currentKeyArray.slice(randomIndex, 1);
+			
+			//ABC
+			var thekey = keys[randomKey];
+			rawArray.push(newMeta[thekey][i]);
+			//01
+			
+			var currentKeyArray = currentKeyArray.filter(function (e) {
+				return e !== randomKey;
+			});
+			//var currentKeyArray = currentKeyArray.slice(randomIndex, 1);
 		}
+		l(currentKeyArray.length)
 	}
 	l(rawArray);
 	
